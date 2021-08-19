@@ -1,6 +1,7 @@
 import { Button, Modal } from "antd";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 
 function View() {
@@ -8,8 +9,11 @@ function View() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   console.log("data", data);
 
+  const history = useHistory();
+
   const handleOk = () => {
     setIsModalVisible(false);
+    history.push("/table");
   };
 
   const showModal = () => {
