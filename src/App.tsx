@@ -13,6 +13,7 @@ import Addnew from "./components/Addnew";
 import FinalTb from "./components/FinalTb";
 import Home1 from "./components/Home1";
 import BaseFormik from "./components/BaseFormik";
+import View from "./components/View";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
 
         <Route path="/addnew" component={Addnew} exact />
         <Route path="/base" exact component={BaseFormik} />
+        <Route path="/view" exact component={View} />
         <Route component={PageNotFound} />
       </Switch>
     </>

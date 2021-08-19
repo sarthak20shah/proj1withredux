@@ -13,6 +13,10 @@ import { toast } from "react-toastify";
 // import Modal from "antd/lib/modal/Modal";
 import { Modal } from "antd";
 
+import { useSelector, useDispatch } from "react-redux";
+import { view } from "../redux/rowData-redux/action";
+import { useAppDispatch } from "../redux/hooks";
+
 interface Item {
   key: string;
   name: string;
@@ -89,6 +93,9 @@ const Ed = () => {
 
   const isEditing = (record: Item) => record.key === editingKey;
 
+  let userdata: any = useSelector((state) => state);
+  const dispatch = useAppDispatch();
+
   const edit = (record: Partial<Item> & { key: React.Key }) => {
     form.setFieldsValue({ name: "", id: "", email: "", ...record });
     setEditingKey(record.key);
@@ -145,6 +152,7 @@ const Ed = () => {
         console.log("finalData", finaData);
         setData(finaData);
       });
+    console.log("data123", userdata);
   }, []);
 
   const handleAdd = () => {
@@ -172,9 +180,14 @@ const Ed = () => {
   const showModal = (key: any) => {
     anyData2 = dataSource.filter((item: any) => item.key === key);
     console.log("anyData2", anyData2[0]);
-    setT1(dataSource.filter((item: any) => item.key === key)[0]);
-    console.log("t1", t1);
-    setIsModalVisible(true);
+    userdata = dataSource.filter((item: any) => item.key === key)[0];
+    setT1(userdata);
+    console.log("data123 from view", userdata);
+
+    dispatch({ type: "VIEW", payload: userdata });
+
+    // setIsModalVisible(true);
+    history.push("/view");
   };
 
   const handleOk = () => {

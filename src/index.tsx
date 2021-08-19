@@ -14,8 +14,11 @@ import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { rootReducer } from "./reducers";
 
+// import { Provider } from "react-redux";
+import store from "../src/redux/store";
+
 //store
-const store = createStore(rootReducer, composeWithDevTools());
+// const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>
